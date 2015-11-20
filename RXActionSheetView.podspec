@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.social_media_url = "http://weibo.com/xzjxylophone"
   s.source   = { :git => 'https://github.com/xzjxylophone/RXActionSheetView.git', :tag => "v#{s.version}" }
   s.description = %{
-        RXCheckView is a base as view.
+        RXActionSheetView is a base as view.
   }
   s.source_files = 'RXActionSheetView/*.{h,m}'
   s.frameworks = 'Foundation', 'UIKit'
