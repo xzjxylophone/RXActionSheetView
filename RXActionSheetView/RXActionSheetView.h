@@ -10,8 +10,8 @@
 
 @interface RXActionSheetView : UIView
 
-@property (nonatomic, strong) UIView *vBg;
-@property (nonatomic, strong) UIView *vMain;
+@property (nonatomic, strong) UIView *backgroundView;
+@property (nonatomic, strong) UIView *mainView;
 
 
 @property (nonatomic, readonly) CGFloat showY;

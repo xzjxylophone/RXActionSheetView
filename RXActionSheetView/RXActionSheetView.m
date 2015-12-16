@@ -38,10 +38,10 @@
 {
     _isSupportClickOtherToClose = isSupportClickOtherToClose;
     if (isSupportClickOtherToClose) {
-        self.vBg.userInteractionEnabled = YES;
-        [self.vBg addGestureRecognizer:self.tgr];
+        self.backgroundView.userInteractionEnabled = YES;
+        [self.backgroundView addGestureRecognizer:self.tgr];
     } else {
-        [self.vBg removeGestureRecognizer:self.tgr];
+        [self.backgroundView removeGestureRecognizer:self.tgr];
     }
 }
 
@@ -49,8 +49,8 @@
 {
     if (self = [super initWithFrame:frame]) {
         CGFloat width = [UIScreen mainScreen].bounds.size.width;
-        self.vBg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, [UIScreen mainScreen].bounds.size.height)];
-        self.vBg.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        self.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, [UIScreen mainScreen].bounds.size.height)];
+        self.backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
         self.isSupportClickOtherToClose = YES;
         self.backgroundColor = [UIColor clearColor];
         
@@ -78,9 +78,9 @@
 
 - (void)show
 {
-    [self.vBg addSubview:self];
+    [self.backgroundView addSubview:self];
     UIView *window = [UIApplication sharedApplication].keyWindow;
-    [window addSubview:self.vBg];
+    [window addSubview:self.backgroundView];
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     CGFloat selfY = self.showY;
     [self setFrameTop:height];
@@ -103,7 +103,7 @@
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:)];
     } else {
-        [self.vBg removeFromSuperview];
+        [self.backgroundView removeFromSuperview];
         [self removeFromSuperview];
     }
     [self setFrameTop:height];
@@ -114,7 +114,7 @@
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     
-    [self.vBg removeFromSuperview];
+    [self.backgroundView removeFromSuperview];
     [self removeFromSuperview];
 }
 
