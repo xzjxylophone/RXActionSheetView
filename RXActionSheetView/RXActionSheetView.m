@@ -53,6 +53,7 @@
         self.backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
         self.isSupportClickOtherToClose = YES;
         self.backgroundColor = [UIColor clearColor];
+        self.isSupportAnimate = YES;
         
         
         
@@ -69,12 +70,6 @@
 
 
 
-- (CGFloat)showY
-{
-    CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    return (height - self.frame.size.height) / 2.0f;
-}
-
 
 - (void)show
 {
@@ -82,8 +77,29 @@
     UIView *window = [UIApplication sharedApplication].keyWindow;
     [window addSubview:self.backgroundView];
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    CGFloat selfY = self.showY;
-    [self setFrameTop:height];
+    CGFloat selfY = 0;
+    switch (self.E_RX_ActionSheetViewAnimatePosition) {
+        case kE_RX_ActionSheetViewAnimatePosition_Top:
+        {
+            selfY = 0;
+        }
+            break;
+        case kE_RX_ActionSheetViewAnimatePosition_Mid:
+        {
+            
+            selfY = (height - self.frame.size.height) / 2.0f;
+        }
+            break;
+        case kE_RX_ActionSheetViewAnimatePosition_Bottom:
+        {
+            
+            selfY = (height - self.frame.size.height);
+        }
+            break;
+        default:
+            break;
+    }
+    
     if (self.isSupportAnimate) {
         [UIView beginAnimations:@"abc" context:nil];
         [UIView setAnimationDuration:0.5];

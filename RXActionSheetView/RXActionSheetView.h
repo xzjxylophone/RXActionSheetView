@@ -8,13 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef enum E_RX_ActionSheetViewAnimatePosition {
+    kE_RX_ActionSheetViewAnimatePosition_Top,
+    kE_RX_ActionSheetViewAnimatePosition_Mid,
+    kE_RX_ActionSheetViewAnimatePosition_Bottom,
+}E_RX_ActionSheetViewAnimatePosition;
+
+
 @interface RXActionSheetView : UIView
 
 @property (nonatomic, strong) UIView *backgroundView;
-@property (nonatomic, strong) UIView *mainView;
 
 
-@property (nonatomic, readonly) CGFloat showY;
+// 默认是 Mid
+@property (nonatomic, assign) E_RX_ActionSheetViewAnimatePosition E_RX_ActionSheetViewAnimatePosition;
+
 
 
 // 是否支持点击其他地方消失关闭
