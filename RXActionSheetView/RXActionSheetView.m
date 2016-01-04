@@ -77,6 +77,7 @@
     UIView *window = [UIApplication sharedApplication].keyWindow;
     [window addSubview:self.backgroundView];
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    [self setFrameTop:height];
     CGFloat selfY = 0;
     switch (self.E_RX_ActionSheetViewAnimatePosition) {
         case kE_RX_ActionSheetViewAnimatePosition_Top:
