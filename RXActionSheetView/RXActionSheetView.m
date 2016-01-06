@@ -54,6 +54,7 @@
         self.isSupportClickOtherToClose = YES;
         self.backgroundColor = [UIColor clearColor];
         self.isSupportAnimate = YES;
+        self.e_RX_ActionSheetViewAnimatePosition = kE_RX_ActionSheetViewAnimatePosition_Mid;
         
         
         
@@ -79,7 +80,7 @@
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     [self setFrameTop:height];
     CGFloat selfY = 0;
-    switch (self.E_RX_ActionSheetViewAnimatePosition) {
+    switch (self.e_RX_ActionSheetViewAnimatePosition) {
         case kE_RX_ActionSheetViewAnimatePosition_Top:
         {
             selfY = 0;

@@ -22,7 +22,7 @@ typedef enum E_RX_ActionSheetViewAnimatePosition {
 
 
 // 默认是 Mid
-@property (nonatomic, assign) E_RX_ActionSheetViewAnimatePosition E_RX_ActionSheetViewAnimatePosition;
+@property (nonatomic, assign) E_RX_ActionSheetViewAnimatePosition e_RX_ActionSheetViewAnimatePosition;
 
 
 
