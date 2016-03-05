@@ -35,6 +35,10 @@ typedef enum E_RX_ActionSheetViewAnimatePosition {
 - (void)show;
 - (void)close;
 
+- (void)showWithCompletion:(void(^)(void))completion;
+- (void)closeWithCompletion:(void(^)(void))completion;
+
+
 + (id)rxActionSheetView;
 
 @end

@@ -14,13 +14,15 @@
 @property (nonatomic, strong) UITapGestureRecognizer *tgr;
 
 
+@property (nonatomic, copy) void(^closeCompletion)(void);
+@property (nonatomic, copy) void(^showCompletion)(void);
 @end
 
 
 
 @implementation RXActionSheetView
 
-
+#pragma mark - Proverty
 - (UITapGestureRecognizer *)tgr
 {
     if (_tgr == nil) {
@@ -28,12 +30,6 @@
     }
     return _tgr;
 }
-
-- (void)vBgAction:(id)sender
-{
-    [self close];
-}
-
 - (void)setIsSupportClickOtherToClose:(BOOL)isSupportClickOtherToClose
 {
     _isSupportClickOtherToClose = isSupportClickOtherToClose;
@@ -45,6 +41,19 @@
     }
 }
 
+#pragma mark - Action
+- (void)vBgAction:(id)sender
+{
+    [self close];
+}
+#pragma mark - Private
+- (void)setFrameTop:(CGFloat)top
+{
+    CGRect frame = self.frame;
+    frame.origin.y = top;
+    self.frame = frame;
+}
+#pragma mark - Constructor And Destructor
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
@@ -55,25 +64,23 @@
         self.backgroundColor = [UIColor clearColor];
         self.isSupportAnimate = YES;
         self.e_RX_ActionSheetViewAnimatePosition = kE_RX_ActionSheetViewAnimatePosition_Mid;
-        
-        
-        
     }
     return self;
 }
 
-- (void)setFrameTop:(CGFloat)top
-{
-    CGRect frame = self.frame;
-    frame.origin.y = top;
-    self.frame = frame;
-}
-
-
-
-
+#pragma mark - Public Method
 - (void)show
 {
+    [self showWithCompletion:nil];
+}
+
+- (void)close
+{
+    [self closeWithCompletion:nil];
+}
+- (void)showWithCompletion:(void(^)(void))completion
+{
+    self.showCompletion = completion;
     [self.backgroundView addSubview:self];
     UIView *window = [UIApplication sharedApplication].keyWindow;
     [window addSubview:self.backgroundView];
@@ -105,15 +112,22 @@
     if (self.isSupportAnimate) {
         [UIView beginAnimations:@"abc" context:nil];
         [UIView setAnimationDuration:0.5];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(animationDidStop:showFinished:)];
     }
     [self setFrameTop:selfY];
+    if (!self.isSupportAnimate) {
+        [self safeBlock_showCompletion];
+    }
     if (self.isSupportAnimate) {
         [UIView commitAnimations];
     }
     
 }
-- (void)close
+
+- (void)closeWithCompletion:(void(^)(void))completion
 {
+    self.closeCompletion = completion;
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     if (self.isSupportAnimate) {
         [UIView beginAnimations:@"stop" context:nil];
@@ -123,20 +137,41 @@
     } else {
         [self.backgroundView removeFromSuperview];
         [self removeFromSuperview];
+        [self safeBlock_closeCompletion];
     }
     [self setFrameTop:height];
     if (self.isSupportAnimate) {
         [UIView commitAnimations];
     }
 }
+
+#pragma mark - Animation Stop Action
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    
     [self.backgroundView removeFromSuperview];
     [self removeFromSuperview];
+    [self safeBlock_closeCompletion];
 }
-
-
+- (void)animationDidStop:(CAAnimation *)anim showFinished:(BOOL)flag
+{
+    [self safeBlock_showCompletion];
+}
+#pragma mark - Safe Block
+- (void)safeBlock_closeCompletion
+{
+    if (self.closeCompletion != nil) {
+        self.closeCompletion();
+        self.closeCompletion = nil;
+    }
+}
+- (void)safeBlock_showCompletion
+{
+    if (self.showCompletion != nil) {
+        self.showCompletion();
+        self.showCompletion = nil;
+    }
+}
+#pragma mark - Class Method
 + (id)rxActionSheetView
 {
     Class cls = [self class];
