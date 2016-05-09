@@ -13,6 +13,7 @@
 		58C415081BFEB9D00053F438 /* RXActionSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C415071BFEB9D00053F438 /* RXActionSheetView.m */; };
 		58C4150C1BFEB9F90053F438 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C4150A1BFEB9F90053F438 /* MainViewController.m */; };
 		58C4150D1BFEB9F90053F438 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58C4150B1BFEB9F90053F438 /* MainViewController.xib */; };
+		C93C19591CDCB0B70085953C /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = C93C19581CDCB0B70085953C /* TestView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		58C415091BFEB9F90053F438 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		58C4150A1BFEB9F90053F438 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		58C4150B1BFEB9F90053F438 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		C93C19571CDCB0B70085953C /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
+		C93C19581CDCB0B70085953C /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,8 @@
 				58C415091BFEB9F90053F438 /* MainViewController.h */,
 				58C4150A1BFEB9F90053F438 /* MainViewController.m */,
 				58C4150B1BFEB9F90053F438 /* MainViewController.xib */,
+				C93C19571CDCB0B70085953C /* TestView.h */,
+				C93C19581CDCB0B70085953C /* TestView.m */,
 			);
 			path = RXActionSheetViewExample;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 			files = (
 				58C414F31BFEB9C20053F438 /* AppDelegate.m in Sources */,
 				58C415081BFEB9D00053F438 /* RXActionSheetView.m in Sources */,
+				C93C19591CDCB0B70085953C /* TestView.m in Sources */,
 				58C4150C1BFEB9F90053F438 /* MainViewController.m in Sources */,
 				58C414F01BFEB9C20053F438 /* main.m in Sources */,
 			);
@@ -294,6 +300,7 @@
 				58C415041BFEB9C20053F438 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

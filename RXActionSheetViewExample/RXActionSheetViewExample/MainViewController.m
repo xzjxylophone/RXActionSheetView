@@ -7,12 +7,20 @@
 //
 
 #import "MainViewController.h"
+#import "TestView.h"
 
 @interface MainViewController ()
 
 @end
 
 @implementation MainViewController
+
+
+- (IBAction)buttonTouchUpInside:(id)sender {
+    TestView *tv = [TestView rxActionSheetView];
+    [tv show];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
