@@ -14,8 +14,6 @@
 @property (nonatomic, strong) UITapGestureRecognizer *tgr;
 
 
-@property (nonatomic, copy) void(^closeCompletion)(void);
-@property (nonatomic, copy) void(^showCompletion)(void);
 
 
 
@@ -106,11 +104,11 @@
 #pragma mark - Public Method
 - (void)show
 {
-    [self showWithCompletion:nil];
+    [self showWithCompletion:self.showCompletion];
 }
 - (void)close
 {
-    [self closeWithCompletion:nil];
+    [self closeWithCompletion:self.closeCompletion];
 }
 - (void)showWithCompletion:(void(^)(void))completion
 {
