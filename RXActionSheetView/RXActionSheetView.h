@@ -10,11 +10,11 @@
 
 
 typedef enum E_RX_ActionSheetViewAnimatePosition {
-    kE_RX_ActionSheetViewAnimatePosition_Top,
-    kE_RX_ActionSheetViewAnimatePosition_Mid,
-    kE_RX_ActionSheetViewAnimatePosition_Bottom,
     kE_RX_ActionSheetViewAnimatePosition_Left,
     kE_RX_ActionSheetViewAnimatePosition_Right,
+    kE_RX_ActionSheetViewAnimatePosition_Top,
+    kE_RX_ActionSheetViewAnimatePosition_Bottom,
+    kE_RX_ActionSheetViewAnimatePosition_Mid,
 }E_RX_ActionSheetViewAnimatePosition;
 
 
@@ -31,22 +31,22 @@ typedef enum E_RX_ActionSheetViewAnimateDirection {
 @property (nonatomic, strong) UIView *backgroundView;
 
 
-// default is Mid
+// default is kE_RX_ActionSheetViewAnimatePosition_Mid
 @property (nonatomic, assign) E_RX_ActionSheetViewAnimatePosition e_RX_ActionSheetViewAnimatePosition;
-
 // default is kE_RX_ActionSheetViewAnimateDirection_FromBottomToTop
 @property (nonatomic, assign) E_RX_ActionSheetViewAnimateDirection e_RX_ActionSheetViewAnimateDirection;
-
-
-
-// 是否支持点击其他地方消失关闭
+// default YES
 @property (nonatomic, assign) BOOL isSupportClickOtherToClose;
-// 是否支持显示和关闭的动画
+// default YES
 @property (nonatomic, assign) BOOL isSupportAnimate;
+// default is 0.5
+@property (nonatomic, assign) NSTimeInterval duration;
 
 
 @property (nonatomic, readonly) CGPoint startPoint;
 @property (nonatomic, readonly) CGPoint endPoint;
+
+
 
 
 // can override this two method

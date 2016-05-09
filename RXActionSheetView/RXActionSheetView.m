@@ -98,6 +98,7 @@
         self.isSupportAnimate = YES;
         self.e_RX_ActionSheetViewAnimatePosition = kE_RX_ActionSheetViewAnimatePosition_Mid;
         self.e_RX_ActionSheetViewAnimateDirection = kE_RX_ActionSheetViewAnimateDirection_FromBottomToTop;
+        self.duration = 0.5;
     }
     return self;
 }
@@ -208,8 +209,8 @@
     [window addSubview:self.backgroundView];
     if (self.isSupportAnimate) {
         [self __private_setFrameOrigin:startPoint];
-        [UIView beginAnimations:@"abc" context:nil];
-        [UIView setAnimationDuration:0.5];
+        [UIView beginAnimations:@"show" context:nil];
+        [UIView setAnimationDuration:self.duration];
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(animationDidStop:showFinished:)];
         [self __private_setFrameOrigin:endPoint];
@@ -223,10 +224,10 @@
 {
     self.closeCompletion = completion;
     if (self.isSupportAnimate) {
-        [UIView beginAnimations:@"stop" context:nil];
-        [UIView setAnimationDuration:0.5];
+        [UIView beginAnimations:@"close" context:nil];
+        [UIView setAnimationDuration:self.duration];
         [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:)];
+        [UIView setAnimationDidStopSelector:@selector(animationDidStop:closeFinished:)];
         [self __private_setFrameOrigin:endPoint];
         [UIView commitAnimations];
     } else {
@@ -245,7 +246,7 @@
 
 
 #pragma mark - Animation Stop Action
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+- (void)animationDidStop:(CAAnimation *)anim closeFinished:(BOOL)flag
 {
     [self.backgroundView removeFromSuperview];
     [self removeFromSuperview];
