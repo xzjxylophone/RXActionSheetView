@@ -17,7 +17,13 @@
 @property (nonatomic, copy) void(^closeCompletion)(void);
 @property (nonatomic, copy) void(^showCompletion)(void);
 
-@property (nonatomic, assign) E_RX_ActionSheetViewAnimateDirection closeDirection;
+
+
+@property (nonatomic, assign) CGPoint startPoint;
+@property (nonatomic, assign) CGPoint endPoint;
+
+
+
 @end
 
 
@@ -48,22 +54,18 @@
     switch (e_RX_ActionSheetViewAnimateDirection) {
         case kE_RX_ActionSheetViewAnimateDirection_FromTopToBottom:
         {
-            self.closeDirection = kE_RX_ActionSheetViewAnimateDirection_FromBottomToTop;
         }
             break;
         case kE_RX_ActionSheetViewAnimateDirection_FromBottomToTop:
         {
-            self.closeDirection = kE_RX_ActionSheetViewAnimateDirection_FromTopToBottom;
         }
             break;
         case kE_RX_ActionSheetViewAnimateDirection_FromLeftToRight:
         {
-            self.closeDirection = kE_RX_ActionSheetViewAnimateDirection_FromRightToLeft;
         }
             break;
         case kE_RX_ActionSheetViewAnimateDirection_FromRightToLeft:
         {
-            self.closeDirection = kE_RX_ActionSheetViewAnimateDirection_FromLeftToRight;
         }
             break;
         default:
@@ -114,8 +116,8 @@
     CGPoint startPoint = CGPointMake(0, 0);
     CGPoint endPoint = CGPointMake(0, 0);
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    CGFloat selfWidth = self.frame.size.width;
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    CGFloat selfWidth = self.frame.size.width;
     CGFloat selfHeigth = self.frame.size.height;
     switch (self.e_RX_ActionSheetViewAnimateDirection) {
         case kE_RX_ActionSheetViewAnimateDirection_FromLeftToRight:
@@ -190,47 +192,16 @@
 
 - (void)closeWithCompletion:(void(^)(void))completion
 {
-    CGPoint endPoint = CGPointMake(0, 0);
-    switch (self.closeDirection) {
-        case kE_RX_ActionSheetViewAnimateDirection_FromLeftToRight:
-        case kE_RX_ActionSheetViewAnimateDirection_FromRightToLeft:
-        {
-            endPoint.y = self.frame.origin.y;
-            switch (self.closeDirection) {
-                case kE_RX_ActionSheetViewAnimateDirection_FromLeftToRight:
-                    endPoint.x = [UIScreen mainScreen].bounds.size.width;
-                    break;
-                case kE_RX_ActionSheetViewAnimateDirection_FromRightToLeft:
-                default:
-                    endPoint.x = -self.frame.size.width;
-                    break;
-            }
-        }
-            break;
-        case kE_RX_ActionSheetViewAnimateDirection_FromTopToBottom:
-        case kE_RX_ActionSheetViewAnimateDirection_FromBottomToTop:
-        default:
-        {
-            endPoint.x = self.frame.origin.x;
-            switch (self.closeDirection) {
-                case kE_RX_ActionSheetViewAnimateDirection_FromBottomToTop:
-                    endPoint.y = -self.frame.size.height;
-                    break;
-                case kE_RX_ActionSheetViewAnimateDirection_FromTopToBottom:
-                default:
-                    endPoint.y = [UIScreen mainScreen].bounds.size.height;
-                    break;
-            }
-        }
-            break;
-    }
-    [self closeWithEndPotin:endPoint completion:completion];
+    [self closeWithEndPotin:self.startPoint completion:completion];
 }
 
 
 
 - (void)showWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint completion:(void(^)(void))completion
 {
+    self.startPoint = startPoint;
+    self.endPoint = endPoint;
+    
     self.showCompletion = completion;
     [self.backgroundView addSubview:self];
     UIView *window = [UIApplication sharedApplication].keyWindow;

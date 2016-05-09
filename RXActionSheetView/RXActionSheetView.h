@@ -45,6 +45,12 @@ typedef enum E_RX_ActionSheetViewAnimateDirection {
 @property (nonatomic, assign) BOOL isSupportAnimate;
 
 
+@property (nonatomic, readonly) CGPoint startPoint;
+@property (nonatomic, readonly) CGPoint endPoint;
+
+
+// can override this two method
+// can use showWithStartPoint:endPoint:completion  And  closeWithEndPotin:completion
 - (void)show;
 - (void)close;
 
