@@ -35,9 +35,9 @@ typedef enum E_RX_ActionSheetViewAnimateDirection {
 @property (nonatomic, assign) E_RX_ActionSheetViewAnimatePosition e_RX_ActionSheetViewAnimatePosition;
 // default is kE_RX_ActionSheetViewAnimateDirection_FromBottomToTop
 @property (nonatomic, assign) E_RX_ActionSheetViewAnimateDirection e_RX_ActionSheetViewAnimateDirection;
-// default YES
+// default is YES
 @property (nonatomic, assign) BOOL isSupportClickOtherToClose;
-// default YES
+// default is YES
 @property (nonatomic, assign) BOOL isSupportAnimate;
 // default is 0.5
 @property (nonatomic, assign) NSTimeInterval duration;
