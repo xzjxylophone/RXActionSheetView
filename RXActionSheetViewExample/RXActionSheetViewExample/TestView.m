@@ -24,6 +24,7 @@
         self.e_RX_ActionSheetViewAnimateDirection = kE_RX_ActionSheetViewAnimateDirection_FromLeftToRight;
         
         self.frame = CGRectMake(50, ([UIScreen mainScreen].bounds.size.height - height) / 2.0f, width, height);
+//        self.frame = CGRectMake(0, 0, width, height);
         self.backgroundColor = [UIColor redColor];
     }
     return self;

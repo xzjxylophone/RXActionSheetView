@@ -89,6 +89,13 @@
     frame.origin.x = left;
     self.frame = frame;
 }
+- (void)__private_setFrameOrigin:(CGPoint)origin
+{
+    CGRect frame = self.frame;
+    frame.origin.x = origin.x;
+    frame.origin.y = origin.y;
+    self.frame = frame;
+}
 #pragma mark - Constructor And Destructor
 - (id)initWithFrame:(CGRect)frame
 {
@@ -110,26 +117,23 @@
 {
     [self showWithCompletion:nil];
 }
-
 - (void)close
 {
     [self closeWithCompletion:nil];
 }
 - (void)showWithCompletion:(void(^)(void))completion
 {
-    self.showCompletion = completion;
-    [self.backgroundView addSubview:self];
-    UIView *window = [UIApplication sharedApplication].keyWindow;
-    [window addSubview:self.backgroundView];
+    CGPoint startPoint = CGPointMake(0, 0);
+    CGPoint endPoint = CGPointMake(0, 0);
     
-    
-    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat selfWidth = self.frame.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    CGFloat selfHeigth = self.frame.size.height;
     switch (self.e_RX_ActionSheetViewAnimateDirection) {
         case kE_RX_ActionSheetViewAnimateDirection_FromLeftToRight:
         case kE_RX_ActionSheetViewAnimateDirection_FromRightToLeft:
         {
-            CGFloat width = [UIScreen mainScreen].bounds.size.width;
-            CGFloat selfWidth = self.frame.size.width;
             CGFloat endLeft = 0;
             switch (self.e_RX_ActionSheetViewAnimatePosition) {
                 case kE_RX_ActionSheetViewAnimatePosition_Left:
@@ -139,7 +143,6 @@
                     break;
                 case kE_RX_ActionSheetViewAnimatePosition_Right:
                 {
-                    
                     endLeft = (width - selfWidth);
                 }
                     break;
@@ -152,7 +155,8 @@
                 }
                     break;
             }
-            
+            endPoint.x = endLeft;
+//            endPoint.y = (height - selfHeigth) / 2.0f;
             if (self.isSupportAnimate) {
                 CGFloat startLeft = 0;
                 if (self.e_RX_ActionSheetViewAnimateDirection == kE_RX_ActionSheetViewAnimateDirection_FromLeftToRight) {
@@ -160,16 +164,8 @@
                 } else {
                     startLeft = width;
                 }
-                [self __private_setFrameLeft:startLeft];
-                [UIView beginAnimations:@"abc" context:nil];
-                [UIView setAnimationDuration:0.5];
-                [UIView setAnimationDelegate:self];
-                [UIView setAnimationDidStopSelector:@selector(animationDidStop:showFinished:)];
-                [self __private_setFrameLeft:endLeft];
-                [UIView commitAnimations];
+                startPoint.x = startLeft;
             } else {
-                [self __private_setFrameLeft:endLeft];
-                [self safeBlock_showCompletion];
             }
             
         }
@@ -178,8 +174,6 @@
         case kE_RX_ActionSheetViewAnimateDirection_FromBottomToTop:
         default:
         {
-            CGFloat height = [UIScreen mainScreen].bounds.size.height;
-            CGFloat selfHeigth = self.frame.size.height;
             CGFloat endTop = 0;
             switch (self.e_RX_ActionSheetViewAnimatePosition) {
                 case kE_RX_ActionSheetViewAnimatePosition_Top:
@@ -189,7 +183,6 @@
                     break;
                 case kE_RX_ActionSheetViewAnimatePosition_Bottom:
                 {
-                    
                     endTop = (height - selfHeigth);
                 }
                     break;
@@ -202,7 +195,7 @@
                 }
                     break;
             }
-            
+            endPoint.y = endTop;
             if (self.isSupportAnimate) {
                 CGFloat startTop = 0;
                 if (self.e_RX_ActionSheetViewAnimateDirection == kE_RX_ActionSheetViewAnimateDirection_FromTopToBottom) {
@@ -210,39 +203,23 @@
                 } else {
                     startTop = height;
                 }
-                [self __private_setFrameTop:startTop];
-                [UIView beginAnimations:@"abc" context:nil];
-                [UIView setAnimationDuration:0.5];
-                [UIView setAnimationDelegate:self];
-                [UIView setAnimationDidStopSelector:@selector(animationDidStop:showFinished:)];
-                [self __private_setFrameTop:endTop];
-                [UIView commitAnimations];
+                startPoint.y = startTop;
             } else {
-                [self __private_setFrameTop:endTop];
-                [self safeBlock_showCompletion];
             }
-            
-            
-            
         }
             break;
     }
-    
-    
+    [self showWithStartPoint:startPoint endPoint:endPoint completion:completion];
     
 }
 
 - (void)closeWithCompletion:(void(^)(void))completion
 {
-    self.closeCompletion = completion;
-    
-    
+    CGPoint endPoint = CGPointMake(0, 0);
     switch (self.closeDirection) {
         case kE_RX_ActionSheetViewAnimateDirection_FromLeftToRight:
         case kE_RX_ActionSheetViewAnimateDirection_FromRightToLeft:
         {
-            
-            
             CGFloat width = [UIScreen mainScreen].bounds.size.width;
             CGFloat selfWidth = self.frame.size.width;
             CGFloat endLeft = 0;
@@ -255,23 +232,7 @@
                     endLeft = -selfWidth;
                     break;
             }
-            
-            
-            if (self.isSupportAnimate) {
-                [UIView beginAnimations:@"stop" context:nil];
-                [UIView setAnimationDuration:0.5];
-                [UIView setAnimationDelegate:self];
-                [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:)];
-                [self __private_setFrameLeft:endLeft];
-                [UIView commitAnimations];
-            } else {
-                
-                [self.backgroundView removeFromSuperview];
-                [self removeFromSuperview];
-                [self safeBlock_closeCompletion];
-                [self __private_setFrameLeft:endLeft];
-            }
-            
+            endPoint.x = endLeft;
         }
             break;
         case kE_RX_ActionSheetViewAnimateDirection_FromTopToBottom:
@@ -290,8 +251,92 @@
                     endTop = height;
                     break;
             }
-            
-            
+            endPoint.y = endTop;
+        }
+            break;
+    }
+    [self closeWithEndPotin:endPoint completion:completion];
+}
+
+
+
+- (void)showWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint completion:(void(^)(void))completion
+{
+    self.showCompletion = completion;
+    [self.backgroundView addSubview:self];
+    UIView *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:self.backgroundView];
+    switch (self.e_RX_ActionSheetViewAnimateDirection) {
+        case kE_RX_ActionSheetViewAnimateDirection_FromLeftToRight:
+        case kE_RX_ActionSheetViewAnimateDirection_FromRightToLeft:
+        {
+            CGFloat endLeft = endPoint.x;
+            if (self.isSupportAnimate) {
+                CGFloat startLeft = startPoint.x;
+                [self __private_setFrameLeft:startLeft];
+                [UIView beginAnimations:@"abc" context:nil];
+                [UIView setAnimationDuration:0.5];
+                [UIView setAnimationDelegate:self];
+                [UIView setAnimationDidStopSelector:@selector(animationDidStop:showFinished:)];
+                [self __private_setFrameLeft:endLeft];
+                [UIView commitAnimations];
+            } else {
+                [self __private_setFrameLeft:endLeft];
+                [self safeBlock_showCompletion];
+            }
+        }
+            break;
+        case kE_RX_ActionSheetViewAnimateDirection_FromTopToBottom:
+        case kE_RX_ActionSheetViewAnimateDirection_FromBottomToTop:
+        default:
+        {
+            CGFloat endTop = endPoint.y;
+            if (self.isSupportAnimate) {
+                CGFloat startTop = startPoint.y;
+                [self __private_setFrameTop:startTop];
+                [UIView beginAnimations:@"abc" context:nil];
+                [UIView setAnimationDuration:0.5];
+                [UIView setAnimationDelegate:self];
+                [UIView setAnimationDidStopSelector:@selector(animationDidStop:showFinished:)];
+                [self __private_setFrameTop:endTop];
+                [UIView commitAnimations];
+            } else {
+                [self __private_setFrameTop:endTop];
+                [self safeBlock_showCompletion];
+            }
+        }
+            break;
+    }
+}
+
+- (void)closeWithEndPotin:(CGPoint)endPoint completion:(void(^)(void))completion
+{
+    self.closeCompletion = completion;
+    switch (self.closeDirection) {
+        case kE_RX_ActionSheetViewAnimateDirection_FromLeftToRight:
+        case kE_RX_ActionSheetViewAnimateDirection_FromRightToLeft:
+        {
+            CGFloat endLeft = endPoint.x;
+            if (self.isSupportAnimate) {
+                [UIView beginAnimations:@"stop" context:nil];
+                [UIView setAnimationDuration:0.5];
+                [UIView setAnimationDelegate:self];
+                [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:)];
+                [self __private_setFrameLeft:endLeft];
+                [UIView commitAnimations];
+            } else {
+                [self.backgroundView removeFromSuperview];
+                [self removeFromSuperview];
+                [self safeBlock_closeCompletion];
+                [self __private_setFrameLeft:endLeft];
+            }
+        }
+            break;
+        case kE_RX_ActionSheetViewAnimateDirection_FromTopToBottom:
+        case kE_RX_ActionSheetViewAnimateDirection_FromBottomToTop:
+        default:
+        {
+            CGFloat endTop = endPoint.y;
             if (self.isSupportAnimate) {
                 [UIView beginAnimations:@"stop" context:nil];
                 [UIView setAnimationDuration:0.5];
@@ -300,47 +345,22 @@
                 [self __private_setFrameTop:endTop];
                 [UIView commitAnimations];
             } else {
-                
                 [self.backgroundView removeFromSuperview];
                 [self removeFromSuperview];
                 [self safeBlock_closeCompletion];
                 [self __private_setFrameTop:endTop];
             }
-            
-            
-            
-            
         }
             break;
     }
-    
-//    
-//    
-//    switch (self.closeDirection) {
-//        case kE_RX_ActionSheetViewAnimateDirection_FromBottomToTop:
-//            height = -self.frame.size.height;
-//            break;
-//        case kE_RX_ActionSheetViewAnimateDirection_FromTopToBottom:
-//            height = [UIScreen mainScreen].bounds.size.height;
-//            break;
-//        default:
-//            break;
-//    }
-//    if (self.isSupportAnimate) {
-//        [UIView beginAnimations:@"stop" context:nil];
-//        [UIView setAnimationDuration:0.5];
-//        [UIView setAnimationDelegate:self];
-//        [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:)];
-//    } else {
-//        [self.backgroundView removeFromSuperview];
-//        [self removeFromSuperview];
-//        [self safeBlock_closeCompletion];
-//    }
-//    [self __private_setFrameTop:height];
-//    if (self.isSupportAnimate) {
-//        [UIView commitAnimations];
-//    }
 }
+
+
+
+
+
+
+
 
 #pragma mark - Animation Stop Action
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag

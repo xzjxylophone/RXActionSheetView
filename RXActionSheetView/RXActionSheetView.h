@@ -51,7 +51,43 @@ typedef enum E_RX_ActionSheetViewAnimateDirection {
 - (void)showWithCompletion:(void(^)(void))completion;
 - (void)closeWithCompletion:(void(^)(void))completion;
 
+- (void)showWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint completion:(void(^)(void))completion;
+- (void)closeWithEndPotin:(CGPoint)endPoint completion:(void(^)(void))completion;
+
+
+
+
 
 + (id)rxActionSheetView;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
