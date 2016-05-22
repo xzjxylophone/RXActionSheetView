@@ -11,7 +11,6 @@
 @interface RXActionSheetView ()
 
 
-@property (nonatomic, strong) UITapGestureRecognizer *tgr;
 
 
 
@@ -29,21 +28,21 @@
 @implementation RXActionSheetView
 
 #pragma mark - Proverty
-- (UITapGestureRecognizer *)tgr
+- (UITapGestureRecognizer *)backgroundViewTapGestureRecoginizer
 {
-    if (_tgr == nil) {
-        _tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(vBgAction:)];
+    if (_backgroundViewTapGestureRecoginizer == nil) {
+        _backgroundViewTapGestureRecoginizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewAction:)];
     }
-    return _tgr;
+    return _backgroundViewTapGestureRecoginizer;
 }
 - (void)setIsSupportClickOtherToClose:(BOOL)isSupportClickOtherToClose
 {
     _isSupportClickOtherToClose = isSupportClickOtherToClose;
     if (isSupportClickOtherToClose) {
         self.backgroundView.userInteractionEnabled = YES;
-        [self.backgroundView addGestureRecognizer:self.tgr];
+        [self.backgroundView addGestureRecognizer:self.backgroundViewTapGestureRecoginizer];
     } else {
-        [self.backgroundView removeGestureRecognizer:self.tgr];
+        [self.backgroundView removeGestureRecognizer:self.backgroundViewTapGestureRecoginizer];
     }
 }
 - (void)setE_RX_ActionSheetViewAnimateDirection:(E_RX_ActionSheetViewAnimateDirection)e_RX_ActionSheetViewAnimateDirection
@@ -72,7 +71,7 @@
 }
 
 #pragma mark - Action
-- (void)vBgAction:(id)sender
+- (void)backgroundViewAction:(id)sender
 {
     [self close];
 }

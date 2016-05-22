@@ -43,6 +43,9 @@ typedef enum E_RX_ActionSheetViewAnimateDirection {
 @property (nonatomic, assign) NSTimeInterval duration;
 
 
+// backgroundViewTapGestureRecoginizer
+@property (nonatomic, strong) UITapGestureRecognizer *backgroundViewTapGestureRecoginizer;
+
 
 @property (nonatomic, copy) void(^closeCompletion)(void);
 @property (nonatomic, copy) void(^showCompletion)(void);
