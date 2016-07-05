@@ -14,6 +14,7 @@
 		58C4150C1BFEB9F90053F438 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C4150A1BFEB9F90053F438 /* MainViewController.m */; };
 		58C4150D1BFEB9F90053F438 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58C4150B1BFEB9F90053F438 /* MainViewController.xib */; };
 		C93C19591CDCB0B70085953C /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = C93C19581CDCB0B70085953C /* TestView.m */; };
+		C9F3438C1D2BBC4F004ADFA6 /* RXASView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F3438B1D2BBC4F004ADFA6 /* RXASView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		58C4150B1BFEB9F90053F438 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		C93C19571CDCB0B70085953C /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
 		C93C19581CDCB0B70085953C /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
+		C9F3438A1D2BBC4F004ADFA6 /* RXASView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXASView.h; sourceTree = "<group>"; };
+		C9F3438B1D2BBC4F004ADFA6 /* RXASView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXASView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,8 @@
 				58C4150B1BFEB9F90053F438 /* MainViewController.xib */,
 				C93C19571CDCB0B70085953C /* TestView.h */,
 				C93C19581CDCB0B70085953C /* TestView.m */,
+				C9F3438A1D2BBC4F004ADFA6 /* RXASView.h */,
+				C9F3438B1D2BBC4F004ADFA6 /* RXASView.m */,
 			);
 			path = RXActionSheetViewExample;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 			files = (
 				58C414F31BFEB9C20053F438 /* AppDelegate.m in Sources */,
 				58C415081BFEB9D00053F438 /* RXActionSheetView.m in Sources */,
+				C9F3438C1D2BBC4F004ADFA6 /* RXASView.m in Sources */,
 				C93C19591CDCB0B70085953C /* TestView.m in Sources */,
 				58C4150C1BFEB9F90053F438 /* MainViewController.m in Sources */,
 				58C414F01BFEB9C20053F438 /* main.m in Sources */,

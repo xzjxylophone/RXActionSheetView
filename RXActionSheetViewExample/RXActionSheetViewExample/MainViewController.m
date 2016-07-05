@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "TestView.h"
+#import "RXASView.h"
 
 @interface MainViewController ()
 
@@ -17,8 +18,12 @@
 
 
 - (IBAction)buttonTouchUpInside:(id)sender {
-    TestView *tv = [TestView rxActionSheetView];
-    [tv show];
+//    TestView *tv = [TestView rxActionSheetView];
+//    [tv show];
+    
+    RXASView *view = [RXASView rxActionSheetView];
+    [view showInView:self.view];
+    
 }
 
 - (IBAction)button2TouchUpInside:(id)sender {

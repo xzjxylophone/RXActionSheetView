@@ -14,7 +14,7 @@
 
 
 
-
+@property (nonatomic, strong) UIView *customBackgroudView;
 
 @property (nonatomic, assign) CGPoint startPoint;
 @property (nonatomic, assign) CGPoint endPoint;
@@ -90,6 +90,7 @@
         CGFloat width = [UIScreen mainScreen].bounds.size.width;
         self.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, [UIScreen mainScreen].bounds.size.height)];
         self.backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        self.customBackgroudView = self.backgroundView;
         self.isSupportClickOtherToClose = YES;
         self.backgroundColor = [UIColor clearColor];
         self.isSupportAnimate = YES;
@@ -101,6 +102,14 @@
 }
 
 #pragma mark - Public Method
+
+
+- (void)showInView:(UIView *)view
+{
+    self.customBackgroudView = view;
+    [self show];
+}
+
 - (void)show
 {
     [self showWithCompletion:self.showCompletion];
@@ -201,9 +210,16 @@
     self.endPoint = endPoint;
     
     self.showCompletion = completion;
-    [self.backgroundView addSubview:self];
-    UIView *window = [UIApplication sharedApplication].keyWindow;
-    [window addSubview:self.backgroundView];
+    
+    if (self.customBackgroudView == self.backgroundView) {
+        
+        [self.backgroundView addSubview:self];
+        UIView *window = [UIApplication sharedApplication].keyWindow;
+        [window addSubview:self.backgroundView];
+    } else {
+        [self.customBackgroudView addSubview:self];
+    }
+    
     if (self.isSupportAnimate) {
         [self __private_setFrameOrigin:startPoint];
         [UIView beginAnimations:@"show" context:nil];
@@ -228,7 +244,9 @@
         [self __private_setFrameOrigin:endPoint];
         [UIView commitAnimations];
     } else {
-        [self.backgroundView removeFromSuperview];
+        if (self.customBackgroudView == self.backgroundView) {
+            [self.backgroundView removeFromSuperview];
+        }
         [self removeFromSuperview];
         [self safeBlock_closeCompletion];
         [self __private_setFrameOrigin:endPoint];
@@ -245,7 +263,9 @@
 #pragma mark - Animation Stop Action
 - (void)animationDidStop:(CAAnimation *)anim closeFinished:(BOOL)flag
 {
-    [self.backgroundView removeFromSuperview];
+    if (self.customBackgroudView == self.backgroundView) {
+        [self.backgroundView removeFromSuperview];
+    }
     [self removeFromSuperview];
     [self safeBlock_closeCompletion];
 }
