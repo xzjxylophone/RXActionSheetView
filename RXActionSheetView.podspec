@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name     = "RXActionSheetView"
-  s.version  = "1.0"
+  s.version  = "1.1"
   s.license  = "MIT"
   s.summary  = "RXActionSheetView is a base as view"
   s.homepage = "https://github.com/xzjxylophone/RXActionSheetView"

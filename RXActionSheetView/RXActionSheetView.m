@@ -96,6 +96,7 @@
         self.isSupportAnimate = YES;
         self.e_RX_ActionSheetViewAnimatePosition = kE_RX_ActionSheetViewAnimatePosition_Mid;
         self.e_RX_ActionSheetViewAnimateDirection = kE_RX_ActionSheetViewAnimateDirection_FromBottomToTop;
+        self.isShow = NO;
         self.duration = 0.5;
     }
     return self;
@@ -124,6 +125,11 @@
     CGPoint endPoint = CGPointMake(0, 0);
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+    
+    width = self.customBackgroudView.frame.size.width;
+    height = self.customBackgroudView.frame.size.height;
+    
     CGFloat selfWidth = self.frame.size.width;
     CGFloat selfHeigth = self.frame.size.height;
     switch (self.e_RX_ActionSheetViewAnimateDirection) {
@@ -232,6 +238,7 @@
         [self __private_setFrameOrigin:endPoint];
         [self safeBlock_showCompletion];
     }
+    self.isShow = YES;
 }
 - (void)closeWithEndPotin:(CGPoint)endPoint completion:(void(^)(void))completion
 {
@@ -251,6 +258,7 @@
         [self safeBlock_closeCompletion];
         [self __private_setFrameOrigin:endPoint];
     }
+    self.isShow = NO;
 }
 
 

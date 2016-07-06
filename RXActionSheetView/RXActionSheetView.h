@@ -53,6 +53,9 @@ typedef enum E_RX_ActionSheetViewAnimateDirection {
 @property (nonatomic, readonly) CGPoint startPoint;
 @property (nonatomic, readonly) CGPoint endPoint;
 
+// 是否是显示状态,default
+@property (nonatomic, assign) BOOL isShow;
+
 
 
 
