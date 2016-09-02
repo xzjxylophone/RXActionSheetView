@@ -66,6 +66,7 @@ typedef enum E_RX_ActionSheetViewAnimateDirection {
 
 // use this please careful
 - (void)showInView:(UIView *)view;
+- (void)showInViewController:(UIViewController *)vc;
 
 - (void)showWithCompletion:(void(^)(void))completion;
 - (void)closeWithCompletion:(void(^)(void))completion;

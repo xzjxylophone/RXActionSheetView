@@ -28,7 +28,9 @@
 
 - (IBAction)button2TouchUpInside:(id)sender {
     TestView *tv = [TestView rxActionSheetView];
-    [tv showWithStartPoint:CGPointMake(0, 0) endPoint:CGPointMake(100, 300) completion:nil];
+//    [tv showWithStartPoint:CGPointMake(0, 0) endPoint:CGPointMake(100, 300) completion:nil];
+    
+    [tv showInViewController:self];
 }
 
 - (void)viewDidLoad {
