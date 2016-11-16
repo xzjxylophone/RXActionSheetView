@@ -14,6 +14,7 @@
 		58C4150C1BFEB9F90053F438 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C4150A1BFEB9F90053F438 /* MainViewController.m */; };
 		58C4150D1BFEB9F90053F438 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58C4150B1BFEB9F90053F438 /* MainViewController.xib */; };
 		C93C19591CDCB0B70085953C /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = C93C19581CDCB0B70085953C /* TestView.m */; };
+		C9E914AB1DDC3982007B6FEC /* RXActionSheetView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = C9E914AA1DDC3982007B6FEC /* RXActionSheetView.podspec */; };
 		C9F3438C1D2BBC4F004ADFA6 /* RXASView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F3438B1D2BBC4F004ADFA6 /* RXASView.m */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		58C4150B1BFEB9F90053F438 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		C93C19571CDCB0B70085953C /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
 		C93C19581CDCB0B70085953C /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
+		C9E914AA1DDC3982007B6FEC /* RXActionSheetView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RXActionSheetView.podspec; path = ../RXActionSheetView.podspec; sourceTree = "<group>"; };
 		C9F3438A1D2BBC4F004ADFA6 /* RXASView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXASView.h; sourceTree = "<group>"; };
 		C9F3438B1D2BBC4F004ADFA6 /* RXASView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXASView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,6 +51,7 @@
 		58C414E21BFEB9C20053F438 = {
 			isa = PBXGroup;
 			children = (
+				C9E914AA1DDC3982007B6FEC /* RXActionSheetView.podspec */,
 				58C415051BFEB9D00053F438 /* RXActionSheetView */,
 				58C414ED1BFEB9C20053F438 /* RXActionSheetViewExample */,
 				58C414EC1BFEB9C20053F438 /* Products */,
@@ -126,11 +129,12 @@
 		58C414E31BFEB9C20053F438 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Rush.D.Xzj;
 				TargetAttributes = {
 					58C414EA1BFEB9C20053F438 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = FAHJ3Z55C4;
 					};
 				};
 			};
@@ -159,6 +163,7 @@
 			files = (
 				58C414FB1BFEB9C20053F438 /* Assets.xcassets in Resources */,
 				58C4150D1BFEB9F90053F438 /* MainViewController.xib in Resources */,
+				C9E914AB1DDC3982007B6FEC /* RXActionSheetView.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,8 +199,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -217,7 +224,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -237,8 +244,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -254,7 +263,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -266,8 +275,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = FAHJ3Z55C4;
 				INFOPLIST_FILE = RXActionSheetViewExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xzj.RXActionSheetViewExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -279,8 +289,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = FAHJ3Z55C4;
 				INFOPLIST_FILE = RXActionSheetViewExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xzj.RXActionSheetViewExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
